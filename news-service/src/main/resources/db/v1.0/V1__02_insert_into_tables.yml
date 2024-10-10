@@ -1,0 +1,161 @@
+databaseChangeLog:
+  - changeSet:
+      id: insertCategory
+      author: Diana
+      changes:
+        - insert:
+            tableName: CATEGORY
+            columns:
+              - column:
+                  name: CATEGORY_ID
+                  value: '1'
+              - column:
+                  name: NAME_CATEGORY
+                  value: "Новости банка"
+        - insert:
+            tableName: CATEGORY
+            columns:
+              - column:
+                  name: CATEGORY_ID
+                  value: '2'
+              - column:
+                  name: NAME_CATEGORY
+                  value: "Отрасль"
+        - insert:
+            tableName: CATEGORY
+            columns:
+              - column:
+                  name: CATEGORY_ID
+                  value: '3'
+              - column:
+                  name: NAME_CATEGORY
+                  value: "Карьера"
+        - insert:
+            tableName: CATEGORY
+            columns:
+              - column:
+                  name: CATEGORY_ID
+                  value: '4'
+              - column:
+                  name: NAME_CATEGORY
+                  value: "Инновации"
+        - insert:
+            tableName: CATEGORY
+            columns:
+              - column:
+                  name: CATEGORY_ID
+                  value: '5'
+              - column:
+                  name: NAME_CATEGORY
+                  value: "Социальная жизнь"
+        - insert:
+            tableName: CATEGORY
+            columns:
+              - column:
+                  name: CATEGORY_ID
+                  value: '6'
+              - column:
+                  name: NAME_CATEGORY
+                  value: "Бенефиты"
+        - insert:
+            tableName: CATEGORY
+            columns:
+              - column:
+                  name: CATEGORY_ID
+                  value: '7'
+              - column:
+                  name: NAME_CATEGORY
+                  value: "Другое"
+
+  - changeSet:
+      id: insertStatus
+      author: Diana
+      changes:
+        - insert:
+            tableName: STATUS
+            columns:
+              - column:
+                  name: STATUS_ID
+                  value: '1'
+              - column:
+                  name: NAME_STATUS
+                  value: "Активен"
+        - insert:
+            tableName: STATUS
+            columns:
+              - column:
+                  name: STATUS_ID
+                  value: '2'
+              - column:
+                  name: NAME_STATUS
+                  value: "В архиве"
+
+
+
+  - changeSet:
+      id: insertNews
+      author: Diana
+      changes:
+        - insert:
+            tableName: NEWS
+            columns:
+              - column:
+                  name: NEWS_ID
+                  value: '254e8333-e29b-41d4-a716-446655449990'
+              - column:
+                  name: TITLE
+                  value: "В городе Пинск торжественно открылся новый офис!"
+              - column:
+                  name: INTRO
+                  value: "По адресу Ленина 120 в Кировском районе г. Пинск открылся новый офис. Был организован фуршет, проведена презентация, и назначены руководителей."
+              - column:
+                  name: TEXT
+                  value: "Компания объявляет о новых выгодных условиях по кредитным продуктам!..."
+              - column:
+                  name: CATEGORY_ID
+                  value: '2'
+              - column:
+                  name: STATUS_ID
+                  value: '1'
+              - column:
+                  name: N_DATE_CREATE
+                  value: "2024-01-03 16:00:00"
+              - column:
+                  name: N_DATE_PUBLISHED
+                  value: "2024-01-05 16:00:00"
+
+  - changeSet:
+      id: insertImage
+      author: Diana
+      changes:
+        - insert:
+            tableName: IMAGE
+            columns:
+              - column:
+                  name: IMAGE_ID
+                  value: '450e8400-e29b-41d4-a716-446655440000'
+              - column:
+                  name: URL
+                  value: "/news/innovation/12345678/187.png"
+
+  - changeSet:
+      id: insertImageNews
+      author: Nikita
+      changes:
+        - insert:
+            tableName: IMAGE_NEWS
+            columns:
+              - column:
+                  name: IMAGE_NEWS_ID
+                  value: '110e1100-e00b-41d4-a716-446655440000'
+              - column:
+                  name: NEWS_ID
+                  value: '254e8333-e29b-41d4-a716-446655449990'
+              - column:
+                  name: IMAGE_ID
+                  value: '450e8400-e29b-41d4-a716-446655440000'
+              - column:
+                  name: SIZE_IMAGE
+                  value: "Маленькое"
+
+

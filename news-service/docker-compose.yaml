@@ -1,0 +1,11 @@
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: news_service
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5435:5432"
+
+

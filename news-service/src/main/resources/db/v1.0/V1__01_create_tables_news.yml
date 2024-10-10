@@ -1,0 +1,173 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_news_table
+      author: diana
+      changes:
+        - sql:
+            dbms: postgresql
+            endDelimiter: ;
+            sql: CREATE EXTENSION IF NOT EXISTS "pgcrypto";
+        - createTable:
+            tableName: NEWS
+            columns:
+              - column:
+                  name: NEWS_ID
+                  type: UUID
+                  defaultValue: gen_random_uuid()
+                  computed: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: TITLE
+                  type: VARCHAR(150)
+                  computed: true
+                  constraints:
+                    nullable: false
+              - column:
+                  name: INTRO
+                  type: VARCHAR(200)
+                  computed: true
+                  constraints:
+                    nullable: false
+              - column:
+                  name: TEXT
+                  type: TEXT(10000)
+                  computed: true
+                  constraints:
+                    nullable: false
+              - column:
+                  name: CATEGORY_ID
+                  type: INT
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: STATUS_ID
+                  type: INT
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: N_DATE_CREATE
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: N_DATE_PUBLISHED
+                  type: TIMESTAMP
+  - changeSet:
+      id: create_image_news_table
+      author: diana
+      changes:
+        - createTable:
+            tableName: IMAGE_NEWS
+            columns:
+              - column:
+                  name: IMAGE_NEWS_ID
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: NEWS_ID
+                  type: UUID
+                  constraints:
+                    nullable: false
+              - column:
+                  name: IMAGE_ID
+                  type: UUID
+                  constraints:
+                    nullable: false
+                  computed: true
+              - column:
+                  name: SIZE_IMAGE
+                  type: VARCHAR(15)
+  - changeSet:
+      id: create_image_table
+      author: diana
+      changes:
+        - createTable:
+            tableName: IMAGE
+            columns:
+              - column:
+                  name: IMAGE_ID
+                  type: UUID
+                  computed: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: URL
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+                    file_types:
+                      allowed_extensions:
+                        - png
+                        - jpg
+  - changeSet:
+      id: create_category_table
+      author: diana
+      changes:
+        - createTable:
+            tableName: CATEGORY
+            columns:
+              - column:
+                  name: CATEGORY_ID
+                  type: INT
+                  constraints:
+                    nullable: false
+                    unique: true
+                    primaryKey: true
+              - column:
+                  name: NAME_CATEGORY
+                  type: VARCHAR(40)
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: create_status_table
+      author: diana
+      changes:
+        - createTable:
+            tableName: STATUS
+            columns:
+              - column:
+                  name: STATUS_ID
+                  type: INT
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: NAME_STATUS
+                  type: VARCHAR(10)
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: news_fk
+      author: diana
+      changes:
+        - addForeignKeyConstraint:
+            constraintName: FK_1
+            baseTableName: NEWS
+            baseColumnNames: CATEGORY_ID
+            referencedTableName: CATEGORY
+            referencedColumnNames: CATEGORY_ID
+
+        - addForeignKeyConstraint:
+            constraintName: FK_2
+            baseTableName: NEWS
+            baseColumnNames: STATUS_ID
+            referencedTableName: STATUS
+            referencedColumnNames: STATUS_ID
+
+        - addForeignKeyConstraint:
+            constraintName: FK_3
+            baseTableName: IMAGE_NEWS
+            baseColumnNames: NEWS_ID
+            referencedTableName: NEWS
+            referencedColumnNames: NEWS_ID
+
+        - addForeignKeyConstraint:
+            constraintName: FK_4
+            baseTableName: IMAGE_NEWS
+            baseColumnNames: IMAGE_ID
+            referencedTableName: IMAGE
+            referencedColumnNames: IMAGE_ID

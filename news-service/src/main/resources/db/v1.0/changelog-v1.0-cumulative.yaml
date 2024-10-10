@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: classpath:db/v1.0/V1__01_create_tables_news.yml
+  - include:
+      file: classpath:db/v1.0/V1__02_insert_into_tables.yml
